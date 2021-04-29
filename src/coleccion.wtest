@@ -1,0 +1,36 @@
+import coleccionantiguedades.*
+
+
+
+
+test "reciente adquisicion inicialmente" {
+
+	assert.equals(balanzaDeAlmacen, deltaAntiguedades.recienteAdquisicion())
+
+}
+
+test "reciente adquisicion luego de adquirir algo" {
+
+	deltaAntiguedades.adquirir(cuadroDeBerni)
+	assert.equals(cuadroDeBerni, deltaAntiguedades.recienteAdquisicion())
+
+}
+test "cantidad de antiguedades" {
+	
+	deltaAntiguedades.adquirir(cuadroDeBerni)
+	deltaAntiguedades.adquirir("otra mas")
+
+	assert.equals(3, deltaAntiguedades.cantidad())
+	
+}
+
+
+test " compra de lote" {
+	
+	deltaAntiguedades.adquirir(camisetaDeMaradona)
+  deltaAntiguedades.comprarLote([monaLisa,maquinaDeEscribir])
+   assert.equals(4,deltaAntiguedades.cantidad())
+
+}
+
+
