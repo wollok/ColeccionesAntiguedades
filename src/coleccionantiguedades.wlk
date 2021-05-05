@@ -2,7 +2,7 @@
 object deltaAntiguedades {
 	
 	
-	var antiguedades = [balanzaDeAlmacen] 
+	const antiguedades = [balanzaDeAlmacen] 
 	
 	method tenemosStock() {
         // return antiguedades.size() > 0
@@ -60,7 +60,15 @@ object deltaAntiguedades {
 // Asi eliminas el elemento de la coleccion
 
 	method cualMasBarato() {
-		//TODO
+		
+		return antiguedades.min( { antiguedad => antiguedad.precio() })
+		
+	}
+
+	method elMasAntiguo() {
+		
+		return antiguedades.min( { x => x.fechaFabricacion() })
+		
 	}
     
     method venderTodo() {
@@ -75,10 +83,19 @@ object deltaAntiguedades {
         	else
             	0
     }
+    method listaPrecios(){
+    	return antiguedades.map({ant => ant.precio() })	
+    }
 
-	// Alerta spoiler: lo vemos la proxima clase
+	// 
     method repararTodos() {
-        antiguedades.forEach{ sujetoAntiguoInanimado => sujetoAntiguoInanimado.restaurar()}
+        antiguedades.forEach( { sujetoAntiguoInanimado =>sujetoAntiguoInanimado.restaurar()} )
+    }
+    
+    method delSigloPasado() {
+    	
+    	return antiguedades.filter( {ant => ant.fechaFabricacion() < 2000})
+    	
     }
 
 }
@@ -102,7 +119,7 @@ object lampara {
 
 }
 object martilloCarpintero{
-    var nombre = "martillo"
+
     const anioCreacion = 1999
     var conservacion = 33
     
@@ -139,7 +156,7 @@ object camisetaDeMaradona {
 }
 
 object jarron {
-    var fechadeadquisicion
+    const fechadeadquisicion = 1990
     
     method enMalEstado() {
         return false
@@ -155,7 +172,6 @@ object jarron {
 
 
 object coronaInglesa {
-    var antiguedad=10
 	var estado="Gastado"
 
 	method restaurar(){
@@ -171,10 +187,10 @@ object coronaInglesa {
 
 
 object monaLisa {
-    var antiguedad = 2
+    const antiguedad = 2
     var estadoDeConservacion = "reparar"
 
-    method antiguedad(){
+    method anios(){
         return antiguedad
     }
     method enMalEstado(){
@@ -190,7 +206,7 @@ object monaLisa {
 object maquinaDeEscribir {
     const antiguedad = 90
     var estado = 6
-    method antiguedad(){
+    method anios(){
         return antiguedad
     }
     method restaurar(){
@@ -212,7 +228,7 @@ object botinesDeFutbol {
         conservacion = "Su estado es muy bueno"
     }
 
-    method antiguedad() {
+    method anios() {
         return "Son los que usó ronaldo en el mundial 2002"
     }
 
@@ -223,7 +239,7 @@ object botinesDeFutbol {
 }
 
 object relojAntiguo {
-    var antiguedad = 50
+    const antiguedad = 50
     var restaurado = false
 
     method restaurar() {
@@ -234,7 +250,7 @@ object relojAntiguo {
         return not restaurado
     }
 
-    method antiguedad() {
+    method anios() {
         return antiguedad
     }
 }
@@ -252,9 +268,10 @@ object cuadroDeBerni {
         estaRestaurado = true
     }
     
-    method antiguedad(){
+    method anios(){
         return edad
     }
+    method precio() = edad
 }
 
 
@@ -270,11 +287,12 @@ object balanzaDeAlmacen {
     method enMalEstado(){
         return estado < 3
     }
+    method precio() = 5
 }
 
 object camisetadeArgentina1930{
     var estado="destruida"
-    method antiguedad(){
+    method anios(){
         return 91
     }
     method enMalEstado(){
